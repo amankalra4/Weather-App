@@ -1,0 +1,88 @@
+body {
+    background-color: lightblue;
+}
+
+button {
+    border: 0;
+    padding: 8px 20px;
+    margin: 0 2px;
+    border-radius: 2px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #f16051;
+    color: #fff;
+    font-weight: 100;
+    margin-left: 20px;
+  }
+
+input[type='text'] {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #f16051;
+    width: 30%;
+    padding-bottom: 4px;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    font-size: 20px;
+    color: #fff !important;
+    outline: none;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #fff ;
+    box-shadow: 0 0 0 30px lightblue inset;
+    /* It makes the shadow around the box */
+  }
+
+h1 {
+    text-align: center;
+    font-family: 'Calibri';
+    font-size: 30px;
+}
+
+h2 {
+    margin-left: 35px;
+    font-style: italic;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+.weather_key {
+    color: #f16051;
+    border-bottom: 1px solid #999;
+    width: 70%;
+    font-family: 'Calibri';
+    font-weight: 200;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.weather_key:last-child {
+    border: 0;
+    margin-bottom: 20px;
+}
+
+.weather_value {
+    color: black;
+    font-family: 'Calibri';
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.weather_error {
+    color: #f16051;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 200;
+  }
+
+  .api_error {
+    color: #f16051;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 200;
+  }
