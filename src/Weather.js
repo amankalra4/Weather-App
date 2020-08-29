@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './weather.css';
 import WeatherDisplay from './WeatherDisplay';
+const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 class Weather extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class Weather extends Component {
         event.preventDefault();
         let city = this.state.city_text;
         let country = this.state.country_text;
-        let apiKey = 'bbbdd14fbf24a980a025d45684d92a90';
+       
         if(city && country) {
 
                 getWeather(city,country)
@@ -67,7 +68,7 @@ class Weather extends Component {
 
                 async function getWeather(city_param, country_param) {
                     try {
-                        const res = await fetch(`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=${city_param},${country_param}&APPID=${apiKey}`)
+                        const res = await fetch(`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=${city_param},${country_param}&APPID=${APIKEY}`)
                         let data = await res.json();
                         console.log(data);
                         return data;
