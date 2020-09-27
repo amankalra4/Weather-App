@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Spinner from './Spinner';
 import './weather.css';
 import WeatherDisplay from './WeatherDisplay';
 const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -38,7 +39,7 @@ class Weather extends Component {
         let country = this.state.country_text;
        
         if(city && country) {
-
+            this.setState({loading: true});
                 getWeather(city,country)
                 .then((data1) => {
                 this.setState({
@@ -50,7 +51,8 @@ class Weather extends Component {
                     humidity: data1.main.humidity,
                     description: data1.weather[0].description,
                     error: undefined,
-                    api_error: undefined
+                    api_error: undefined,
+                    loading: false
                     });
                 })
                 .catch((error) => {
@@ -64,7 +66,9 @@ class Weather extends Component {
                         humidity: undefined,
                         description: undefined,
                         error: undefined,
-                        api_error: 'Please give correct city and country'});
+                        api_error: 'Please give correct city and country',
+                        loading: false
+                    });
                 })
 
                 async function getWeather(city_param, country_param) {
@@ -95,6 +99,10 @@ class Weather extends Component {
     }
 
     render() {
+        let show = false;
+        if(this.state.loading) {
+            show =  true;
+        }
         return(
             <React.Fragment>
                 <div style = {{marginTop: '35px', marginLeft: '35px', width: '50%'}}>
@@ -105,7 +113,8 @@ class Weather extends Component {
                             name = 'city_text'
                             value = {this.state.city_text}
                             onChange = {this.handleChange}
-                            placeholder = 'City...' 
+                            placeholder = 'City...'
+                            spellCheck = 'false'
                             />
                         <input 
                             autoComplete = 'off'
@@ -113,26 +122,27 @@ class Weather extends Component {
                             name = 'country_text'
                             value = {this.state.country_text}
                             onChange = {this.handleChange}
-                            placeholder = 'Country...' 
+                            placeholder = 'Country...'
+                            spellCheck = 'false'
                             />
                         <button
                             type = 'submit'
                             name = 'weatherButton'
                             className = 'form-button'
-                            // onClick = {this.handleClick}>
                             >
                             Get Weather
                         </button>
                     </form>
                 </div>
-                {this.state.weather_toggle && <WeatherDisplay temperature = {this.state.temperature}
-                                                              city = {this.state.city}
-                                                              country = {this.state.country}
-                                                              humidity = {this.state.humidity}
-                                                              description = {this.state.description}
-                                                              error = {this.state.error}
-                                                              api_error = {this.state.api_error} />}
-                {this.state.error_toggle && <WeatherDisplay api_error = {this.state.api_error}
+                {show && <Spinner />}
+                {!show && this.state.weather_toggle && <WeatherDisplay temperature = {this.state.temperature}
+                                                            city = {this.state.city}
+                                                            country = {this.state.country}
+                                                            humidity = {this.state.humidity}
+                                                            description = {this.state.description}
+                                                            error = {this.state.error}
+                                                            api_error = {this.state.api_error} />}
+                {!show && this.state.error_toggle && <WeatherDisplay api_error = {this.state.api_error}
                                                             error = {this.state.error} />}
             </React.Fragment>
         );
