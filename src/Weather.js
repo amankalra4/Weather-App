@@ -17,7 +17,8 @@ class Weather extends Component {
             humidity: undefined,
             description: undefined,
             error: undefined,
-            api_error: undefined
+            api_error: undefined,
+            loading: false
         }
     }
 
@@ -95,10 +96,35 @@ class Weather extends Component {
 
     render() {
         return(
-            <div style = {{marginTop: '35px', marginLeft: '35px', height: '200px', width: '50%'}}>
-                <input type = 'text' name = 'city_text' value = {this.state.city_text} onChange = {this.handleChange} placeholder = 'City...' />
-                <input type = 'text' name = 'country_text' value = {this.state.country_text} onChange = {this.handleChange} placeholder = 'Country...' />
-                <button name = 'weatherButton' className = 'form-button' onClick = {this.handleClick}>Get Weather</button>
+            <React.Fragment>
+                <div style = {{marginTop: '35px', marginLeft: '35px', width: '50%'}}>
+                    <form onSubmit = {this.handleClick}>
+                        <input 
+                            autoComplete = 'off'
+                            type = 'text'
+                            name = 'city_text'
+                            value = {this.state.city_text}
+                            onChange = {this.handleChange}
+                            placeholder = 'City...' 
+                            />
+                        <input 
+                            autoComplete = 'off'
+                            type = 'text'
+                            name = 'country_text'
+                            value = {this.state.country_text}
+                            onChange = {this.handleChange}
+                            placeholder = 'Country...' 
+                            />
+                        <button
+                            type = 'submit'
+                            name = 'weatherButton'
+                            className = 'form-button'
+                            // onClick = {this.handleClick}>
+                            >
+                            Get Weather
+                        </button>
+                    </form>
+                </div>
                 {this.state.weather_toggle && <WeatherDisplay temperature = {this.state.temperature}
                                                               city = {this.state.city}
                                                               country = {this.state.country}
@@ -108,7 +134,7 @@ class Weather extends Component {
                                                               api_error = {this.state.api_error} />}
                 {this.state.error_toggle && <WeatherDisplay api_error = {this.state.api_error}
                                                             error = {this.state.error} />}
-            </div>
+            </React.Fragment>
         );
     }
 }

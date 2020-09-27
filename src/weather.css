@@ -5,8 +5,7 @@ body {
 button {
     border: 0;
     padding: 8px 20px;
-    margin: 0 2px;
-    border-radius: 2px;
+    border-radius: 5px;
     font-weight: lighter;
     letter-spacing: 1px;
     font-size: 15px;
@@ -14,8 +13,8 @@ button {
     background-color: #f16051;
     color: #fff;
     font-weight: 100;
-    margin-left: 20px;
-  }
+    outline: none;
+}
 
 input[type='text'] {
     background-color: transparent;
@@ -28,42 +27,17 @@ input[type='text'] {
     margin-bottom: 30px;
     margin-right: 20px;
     font-size: 20px;
-    color: #fff !important;
+    color:  black !important;
     outline: none;
-}
-
-input:-webkit-autofill {
-    -webkit-text-fill-color: #fff ;
-    box-shadow: 0 0 0 30px lightblue inset;
-    /* It makes the shadow around the box */
-  }
-
-h1 {
-    text-align: center;
-    font-family: 'Calibri';
-    font-size: 30px;
-}
-
-h2 {
-    margin-left: 35px;
-    font-style: italic;
-    font-weight: 100;
-    letter-spacing: 1px;
 }
 
 .weather_key {
     color: #f16051;
     border-bottom: 1px solid #999;
-    width: 70%;
     font-family: 'Calibri';
     font-weight: 200;
     font-size: 20px;
     padding-bottom: 10px;
-}
-
-.weather_key:last-child {
-    border: 0;
-    margin-bottom: 20px;
 }
 
 .weather_value {
@@ -73,16 +47,32 @@ h2 {
     font-size: 20px;
 }
 
-.weather_error {
+.weather_error, .api_error {
     color: #f16051;
     font-size: 20px;
     letter-spacing: 1px;
     font-weight: 200;
-  }
+    display: block;
+    margin: 1em 2em;
+    font-weight: inherit;
+}
 
-  .api_error {
-    color: #f16051;
-    font-size: 20px;
-    letter-spacing: 1px;
-    font-weight: 200;
-  }
+@media screen and (max-width: 500px) {
+    input[type='text'] {
+        display: block;
+        width: 100%;
+    }
+    .weather_key {
+        display: block;
+        width: 100%;
+        margin-bottom: 1em;
+    }
+    .weather_value {
+        display: inline-block;
+    }
+    .weather_error, .api_error {
+        display: inline-block;
+        width: 100%;
+        margin: 1em 2em;
+    }
+}
